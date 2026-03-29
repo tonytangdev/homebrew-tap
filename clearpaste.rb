@@ -5,23 +5,28 @@
 class Clearpaste < Formula
   desc "Auto-clean terminal formatting artifacts from clipboard"
   homepage "https://github.com/tonytangdev/clearpaste"
-  version "0.1.0"
+  version "0.1.1"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/tonytangdev/clearpaste/releases/download/v0.1.0/clearpaste_0.1.0_darwin_amd64.tar.gz"
-    sha256 "f73287b288191edb8b85eb0b06989aaa1cbc04094de6edad61c72ec260b9de92"
+    url "https://github.com/tonytangdev/clearpaste/releases/download/v0.1.1/clearpaste_0.1.1_darwin_amd64.tar.gz"
+    sha256 "cb71f733f7eb87f9b3835216d8de677d0dd3944760c39e25c004465ad0f1eed0"
 
     define_method(:install) do
       bin.install "clearpaste"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/tonytangdev/clearpaste/releases/download/v0.1.0/clearpaste_0.1.0_darwin_arm64.tar.gz"
-    sha256 "2701aeef50df8e5ee6e34bc44651ec04d21ff6cb156e446bf8943033521db785"
+    url "https://github.com/tonytangdev/clearpaste/releases/download/v0.1.1/clearpaste_0.1.1_darwin_arm64.tar.gz"
+    sha256 "a53750e28686f2c30297e5c223adca8faad9440b5f8aabd418e9d19579e5e3c7"
 
     define_method(:install) do
       bin.install "clearpaste"
     end
+  end
+
+  service do
+    run [opt_bin/"clearpaste"]
+    keep_alive true
   end
 end
